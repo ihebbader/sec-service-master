@@ -41,12 +41,19 @@ public class Property {
     private Boolean input;
     private Boolean dataGridLabel;
     private String inputType;
+    @Column(length = 1000000000)
     private String defaultValue;
     private int ord;
+    private String imageSize;
+    private String fileMinSize;
+    private String fileMaxSize;
+    private String filePattern;
+    private String storage;
     @OneToMany
     private List<Values> Values = new ArrayList<>();
     @OneToOne
     private DataValues data;
+
 
 
 

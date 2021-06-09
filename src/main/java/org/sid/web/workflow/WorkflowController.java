@@ -153,6 +153,7 @@ public class WorkflowController {
     }
     @PostMapping("/updateEntity")
     public void updateEntity(@RequestBody EntityModel e) throws EntityNotFoundException {
+        System.out.println(e);
         EntityModel entityModel = entityModelRepository.getOne(e.getId());
         if(entityModel == null) throw new EntityNotFoundException("Entité non trouvé");
         entityModelRepository.save(e);
@@ -161,6 +162,10 @@ public class WorkflowController {
     public void AddUserToEntity(@RequestBody List<AppUser> users,@PathVariable Long id){
 
         entityModelService.addUserToEntityModel(id,users);
+    }
+    @GetMapping("/getAllForSuperVisor")
+    public List<DataModel> getForSuperVisor(){
+        return dataModelRepoqitory.findAll();
     }
 
     @GetMapping("/getDataModleToDo/{username}")
@@ -201,6 +206,15 @@ public class WorkflowController {
         System.out.println(d);
         dataModelService.CreateDataModel(d);
     }
-
+    @PostMapping("/UpdateForm/{id}")
+    public void updateForm(@PathVariable Long id ,@RequestBody List<Property> property){
+        EntityModel entityModel = entityModelRepository.getOne(id);
+        property.sort((left,right)->left.getOrd()- right.getOrd());
+        property.forEach(p->{
+            propertyRepository.save(p);
+            entityModel.getProperties().add(p);
+        });
+ entityModelRepository.save(entityModel);
+    }
 }
 

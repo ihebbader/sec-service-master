@@ -112,6 +112,12 @@ public class UserController {
     public void AddRoles(@RequestBody AppUser user){
         this.accountService.addRoleToUser(user.getUsername(),"ADMIN");
     }
+    @PostMapping("/addroles2")
+    public void AddRoles2(@RequestBody AppUser user){
+        System.out.println("ihebbader");
+        this.accountService.addRoleToUser(user.getUsername(),"SUPERVISEUR");
+    }
+
     @CrossOrigin(origins = "http://localhost:4200/**")
     @PostMapping("/delete")
     public void deletUser(@RequestBody AppUser user1) {

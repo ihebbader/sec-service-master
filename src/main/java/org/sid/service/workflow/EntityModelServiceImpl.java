@@ -107,7 +107,6 @@ public class EntityModelServiceImpl implements EntityModelService{
                                 }
                                 if(entityModel.getEtapeOrd()!=1 && entityModel.getEtat().equals("En cours") && entityModels.get(entityModel.getEtapeOrd()-2).getFinished()){
 
-                                    System.out.println("bader");
                                     entityModel.setActived(true);
                                     entityModelRepository.save(entityModel);
 

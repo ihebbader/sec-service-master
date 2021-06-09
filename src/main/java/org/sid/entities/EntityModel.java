@@ -34,5 +34,7 @@ public class EntityModel {
     private String etat;
     private Boolean actived=false;
     private Boolean finished;
+    @ManyToOne
+    private Groupe groupe;
 
 }
