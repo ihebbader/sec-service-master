@@ -58,7 +58,7 @@ public class UserControllerTest {
     private UserController userController;
     @Before
     public void setUp() throws Exception {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+            this.mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
 
     @Test

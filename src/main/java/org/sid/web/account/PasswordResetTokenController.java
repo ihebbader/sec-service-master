@@ -37,6 +37,7 @@ public class PasswordResetTokenController {
         System.out.println(user);
         if(user == null ) throw new UsernameNotFoundException("utilisateur n'existe pas");
         String token = UUID.randomUUID().toString();
+        System.out.println(token);
         accountService.createPasswordResetForUser(user,token);
         emailController.ResetPasswordMail(user,token);
     }

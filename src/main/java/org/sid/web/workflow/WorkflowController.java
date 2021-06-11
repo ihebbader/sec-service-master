@@ -197,6 +197,7 @@ public class WorkflowController {
     }
     @PostMapping("/executEntity")
     public void excuteEntity(@RequestBody EntityModel entityModel){
+        System.out.println(entityModel);
         entityModel.setFinished(true);
         entityModel.setActived(false);
         entityModelRepository.save(entityModel);

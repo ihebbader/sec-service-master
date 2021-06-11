@@ -88,8 +88,6 @@ public class UserController {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         accountService.saveUser(user);
         accountService.addRoleToUser(user.getUsername(),"USER");
-        System.out.println(user);
-
     }
 
 
@@ -214,8 +212,10 @@ public class UserController {
     }
     @GetMapping("/getStatistic")
     public statistic getStatistic() {
+
         List<AppUser> appUsers = appUserRepository.findAll();
         statistic statistic = new statistic();
+        statistic.setNbreDisabledAccount(0);
         appUsers.forEach(u -> {
             statistic.setNbreAllUser(statistic.getNbreAllUser() + 1);
             if (!u.isActived()) {

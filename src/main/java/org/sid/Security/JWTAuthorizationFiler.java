@@ -37,7 +37,6 @@ public class  JWTAuthorizationFiler extends OncePerRequestFilter {
         }
         else {
             String jwtToken = request.getHeader(SecurityParams.JWT_HEADER_NAME);
-            System.out.println("Token="+jwtToken);
             if (jwtToken == null || !jwtToken.startsWith(SecurityParams.HEADER_PREFIX)) {
                 filterChain.doFilter(request, response);
                 return;
@@ -45,11 +44,8 @@ public class  JWTAuthorizationFiler extends OncePerRequestFilter {
             JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SecurityParams.SECRET)).build(); // signer avec le secret
             String jwt = jwtToken.substring(SecurityParams.HEADER_PREFIX.length());// supprimer le prefx
             DecodedJWT decodedJWT = verifier.verify(jwt);
-            System.out.println("JWT="+jwt);
             String username = decodedJWT.getSubject();//puisque le subject contient le username // on doit connaitre le username
             List<String> roles = decodedJWT.getClaims().get("roles").asList(String.class); // get les roles // liste des roles
-            System.out.println("username="+username);
-            System.out.println("roles="+roles);
             Collection<GrantedAuthority> authorities = new ArrayList<>();
             roles.forEach(rn -> {
                 authorities.add(new SimpleGrantedAuthority(rn));

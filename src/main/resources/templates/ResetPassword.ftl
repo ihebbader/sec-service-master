@@ -366,7 +366,7 @@
                                         de changement de mot de passe cliquer sur ce lien<br>
                                         <br>
                                         <div style="text-align: center">
-                                    <button class="bb"  href="${link}">cliquer ici pour changer votre mot de passe</button>
+                                            <a  href="${link}"> <button class="bb" >cliquer ici pour changer votre mot de passe</button></a>
                                         </div></h4>
 
 
