@@ -6,8 +6,8 @@ import org.sid.entities.EntityModel;
 import java.util.List;
 
 public interface EntityModelService {
-    public void SaveEntityModel(EntityModel e);
-    public void DeleteEntityFromModel(Long id);
-    public void addUserToEntityModel(Long id , List<AppUser> appUsers);
-    public void UpdateEntityStatus();
+    void SaveEntityModel(EntityModel e);
+    void DeleteEntityFromModel(Long id);
+    void addUserToEntityModel(Long id, List<AppUser> appUsers);
+    void UpdateEntityStatus();
 }

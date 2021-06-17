@@ -23,6 +23,9 @@ public List<Groupe> getAllGroupOfUser(){
     public void addGroup(@RequestBody Groupe g){
     Date d =new Date();
     g.setDateDeCreation(d);
+    g.getAppUsers().forEach(user->{
+        user.setMaxGroup(user.getMaxGroup()+1);
+    });
     this.groupUserService.saveGroup(g);
 }
 @PostMapping("/deleteUserFromGroup/{id}")

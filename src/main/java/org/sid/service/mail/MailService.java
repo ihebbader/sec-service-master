@@ -71,7 +71,7 @@ private final JavaMailSender javaMailSender;
         Template t = config.getTemplate(Template);
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(t,model);
         helper.setTo(appUser.getEmail());
-        helper.setSubject("Activation compte");
+        helper.setSubject("Adminiss. Progress Engeneering");
         helper.setText(html,true);
         javaMailSender.send(mimeMessage);
     }

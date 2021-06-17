@@ -36,6 +36,7 @@ public class AppUser {
     private String sexe;
     private String note ;
     private String image;
+    private int MaxGroup=0;
     @ManyToMany( cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH}, fetch = FetchType.EAGER)
     private Set<AppRole> roles=new HashSet<AppRole>();
     public Long getId() {

@@ -6,8 +6,8 @@ import java.util.Optional;
 
 
 public interface WorkflowService {
-    public void save(Property p);
-    public Optional<Property> getById(Long id);
-    public List<Property> getAllProperty();
+    void save(Property p);
+    Optional<Property> getById(Long id);
+    List<Property> getAllProperty();
 
 }

@@ -178,9 +178,7 @@ public class UserController {
     public boolean verifyPass(@RequestBody AppUser user,@PathVariable String username){
         AppUser user1 =appUserRepository.findByUsername(username);
         System.out.println(user);
-        if(bCryptPasswordEncoder.matches(user.getPassword(),user1.getPassword())){
-            return false ;
-        }else return true;
+        return !bCryptPasswordEncoder.matches(user.getPassword(), user1.getPassword());
     }
 
     @GetMapping("/getDisabledAccount")
@@ -238,6 +236,18 @@ public class UserController {
     public List<UserNotification> getAllNotification() {
         List<UserNotification> userNotifications = userNotificationRepository.findAll();
         return userNotifications;
+    }
+    @PostMapping("/AcceptRequest")
+    public void acceptRequest(@RequestBody Request request){
+        AppUser appUser = request.getAppUsers();
+        appUser.setActived(true);
+        appUserRepository.save(appUser);
+        requestRepository.deleteById(request.getId());
+        emailController.InfoEmail(appUser);
+    }
+    @PostMapping("/RefuseRequest")
+    public void refuseAccount(@RequestBody Request request){
+        this.requestRepository.deleteById(request.getId());
     }
 }
 

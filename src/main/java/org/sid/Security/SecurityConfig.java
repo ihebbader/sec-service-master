@@ -26,10 +26,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/login/**","/register/**","/exist**/**","/email","/resetPassword","/changePassword","/photoUser/{id}","/saveProperty/**","/getProperty/{id}","/getAllProperty","/saveP/**","/saveEntity/**","/test/{role}"
-                ,"/getDataModleToDo/{username}","/getuser**/**","/addroles2**/**").permitAll();
+                ,"/getDataModleToDo/{username}","/getuser**/**","/addroles2**/**","/v2/api-docs","/swagger-ui.html","/spring-security-rest/swagger-ui/**").permitAll();
         http.authorizeRequests().antMatchers("/appUsers/**","/appRoles/**","/adduser","addroles**/**","/searchByUsername**/**","/searchByEmail**/**","/getAllModel/**","/createDataModel/**","/deleteDataFlow/**","/updateDataModel/**","/addNewEntity/{id}","/deleteEntity/{id}","/getModel/{id}",
                 "/updateEntity**/**","/addUserToEntity/{id}","/addGroup**/**","/getNotification**/**","/getDisabledAccount**/**",
-                "/deleteUserFromGroup/{id}","/deleteGroup/{id}","/verfyDate/{id}").hasAuthority("ADMIN");
+                "/deleteUserFromGroup/{id}","/deleteGroup/{id}","/verfyDate/{id}"
+                ,"/AcceptRequest**/**","/RefuseRequest**/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers("/getAllForSuperVisor**/**").hasAuthority("SUPERVISEUR");
         http.authorizeRequests().antMatchers("/getusers","updateUser","/delete**/**","/uploadPhoto/{id}","/updateMotDePasse/{username}","/verifyPass/{username}","/executEntity**/**").hasAnyAuthority("ADMIN","USER");
         http.authorizeRequests().anyRequest().authenticated();

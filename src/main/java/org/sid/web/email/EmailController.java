@@ -90,6 +90,24 @@ public class EmailController {
         }
         return "Congratulations! Your mail has been send to the user.";
     }
+    public String InfoEmail(AppUser user){
+
+        Map<String,Object> model =new HashMap<>();
+        model.put("username",user.getUsername());
+        try {
+            notificationService.sendEmailWithAttachment(user,"ActivedAccount.ftl",model);
+        } catch (MailException mailException) {
+            System.out.println(mailException);
+        } catch (TemplateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return "Congratulations! Your mail has been send to the user.";
+    }
+
 
 }
 

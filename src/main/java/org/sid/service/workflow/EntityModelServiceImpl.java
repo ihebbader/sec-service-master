@@ -70,7 +70,7 @@ public class EntityModelServiceImpl implements EntityModelService{
         });
         dataModels.forEach(dataModel -> {
             dataModel.getEntity().forEach(entityModel -> {
-                if(entityModel.getEndDate().before(date)){
+                if(entityModel.getStartDate().after(date)){
                     entityModel.setEtat("Programmé");
                 }
                 if(entityModel.getStartDate().before(date)   && entityModel.getEndDate().after(date) && !entityModel.getFinished()){
